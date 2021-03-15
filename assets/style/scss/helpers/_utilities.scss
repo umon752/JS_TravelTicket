@@ -1,0 +1,259 @@
+// .font-size
+@mixin font-sizes($breakpoint: null) {
+
+    @each $key,
+    $value in $font-sizes {
+        @if ($breakpoint==null) {
+            .font-size-#{$key} {
+                font-size: $value;
+            }
+        }
+
+        @else {
+            .font-size#{$breakpoint}-#{$key} {
+                font-size: $value;
+            }
+        }
+    }
+}
+
+// .font-weight
+@mixin font-weights($breakpoint: null) {
+
+    @each $key,
+    $value in $font-weights {
+        @if ($breakpoint==null) {
+            .font-weight-#{$key} {
+                font-weight: $value;
+            }
+        }
+
+        @else {
+            .font-weight#{$breakpoint}-#{$key} {
+                font-weight: $value;
+            }
+        }
+    }
+}
+
+// .text-align
+@mixin text-aligns($breakpoint: null) {
+
+    @each $key,
+    $value in $text-aligns {
+        @if ($breakpoint==null) {
+            .text-#{$key} {
+                text-align: $value;
+            }
+        }
+
+        .text#{$breakpoint}-#{$key} {
+            text-align: $value;
+        }
+    }
+}
+
+// .bg-color、.text-color、border-color
+@mixin colors($breakpoint: null) {
+
+    @each $key,
+    $value in $colors {
+        @if ($breakpoint==null) {
+            .text-#{$key} {
+                color: $value;
+            }
+
+            .bg-#{$key} {
+                background: $value;
+            }
+
+            .border-#{$key} {
+                border-color: $value;
+            }
+        }
+
+        @else {
+            .text#{$breakpoint}-#{$key} {
+                color: $value;
+            }
+        }
+    }
+}
+
+// .flex
+@mixin flex-properties($breakpoint: null) {
+
+    @each $key,
+    $value in $flex-properties {
+        .align-items#{$breakpoint}-#{$key} {
+            align-items: $value;
+        }
+
+        .justify-content#{$breakpoint}-#{$key} {
+            justify-content: $value;
+        }
+    }
+}
+
+@mixin flex-directions($breakpoint: null) {
+
+    @each $key,
+    $value in $flex-directions {
+        .flex#{$breakpoint}-#{$key} {
+            flex-direction: $value;
+        }
+    }
+}
+
+.flex {
+    &-column {
+        flex-direction: column;
+    }
+
+    &-wrap {
+        flex-wrap: wrap;
+    }
+
+    &-nowrap {
+        flex-wrap: nowrap;
+    }
+}
+
+// .display
+@mixin display($breakpoint: null) {
+
+    @each $key,
+    $value in $display {
+        .d#{$breakpoint}-#{$key} {
+            display: $value;
+        }
+    }
+}
+
+// .width
+@mixin width($breakpoint: null) {
+
+    @each $key,
+    $value in $width {
+        .w#{$breakpoint}-#{$key} {
+            width: $value;
+        }
+    }
+}
+
+// .height
+@mixin height($breakpoint: null) {
+
+    @each $key,
+    $value in $height {
+        .h#{$breakpoint}-#{$key} {
+            height: $value;
+        }
+    }
+}
+
+// .border-radius
+@mixin border-radius($breakpoint: null) {
+
+    @each $key,
+    $value in $border-radius {
+        .rounded#{$breakpoint}-#{$key} {
+            border-radius: $value;
+        }
+    }
+}
+
+// .box-shadow
+@mixin shadow($breakpoint: null) {
+
+    @each $key,
+    $value in $shadow {
+        .#{$key}#{$breakpoint} {
+            box-shadow: $value;
+        }
+    }
+}
+
+
+
+// .position
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+// .border-bottom
+.border-0 {
+    border: none;
+}
+
+.border-bottom {
+    border-bottom: 1px solid;
+}
+
+.border-bottom-bold {
+    border-bottom: 3px solid;
+}
+
+// .hover 
+.hover-bg-primary-light {
+    &:hover {
+        background-color: $primary-light;
+    }
+}
+
+.hover-text-primary-light {
+    &:hover {
+        color: $primary-light;
+    }
+}
+
+.hover-img-scale-bigger {
+    img {
+        transition: all ease 300ms;
+    }
+
+    &:hover>img {
+        transform: scale(1.15);
+        transition: all ease 300ms;
+    }
+}
+
+// .overflow
+.overflow-hidden {
+    overflow: hidden;
+}
+
+
+
+/* 套用 RWD */
+// phone
+@include colors();
+@include font-sizes();
+@include flex-properties();
+@include flex-directions();
+@include display();
+@include width();
+@include height();
+@include font-weights();
+@include text-aligns();
+@include border-radius();
+@include shadow();
+
+// pad
+@include md {
+    @include colors(-md);
+    @include font-sizes(-md);
+    @include flex-properties(-md);
+    @include flex-directions(-md);
+    @include display(-md);
+    @include width(-md);
+    @include height(-md);
+    @include font-weights(-md);
+    @include text-aligns(-md);
+    @include border-radius(-md);
+    @include shadow(-md);
+}

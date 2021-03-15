@@ -1,0 +1,49 @@
+// 英文字體 Roboto
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+// 中文字體 Noto Sans
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-size: $font-size-base;
+}
+
+body {
+    font-family: 'Roboto', "Noto Sans", sans-serif;
+    line-height: $line-height-base;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    transition: all ease 300ms;
+}
+
+input,
+textarea {
+    &:focus {
+        outline: none;
+    }
+}
+
+textarea {
+    min-height: 111px;
+}
+
+input[type=button] {
+    cursor: pointer;
+    transition: all ease 300ms;
+}
+
+select {
+    &:focus {
+        outline: none;
+    }
+}

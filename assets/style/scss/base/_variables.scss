@@ -1,0 +1,81 @@
+// line-height
+$line-height-base: 22px;
+
+// font-size
+$font-size-base: 1rem; // 16px
+
+// border-radius
+$border-radius-base: 4px;
+$border-radius-l: 12px;
+
+// color
+$primary: #00807E;
+$primary-light: #64C3BF;
+$secondary: #818A91;
+
+
+
+/* @each 套用 */
+// color
+$colors: (primary: #00807E,
+    primary-light: #64C3BF,
+    dark: #111619,
+    secondary: #818A91,
+    light: #F7F7F7,
+    white: white);
+
+// font-size
+$font-sizes: (xl: $font-size-base * 2, // 32px
+    l: $font-size-base * 1.5, // 24px
+    m: $font-size-base * 1.25, // 20px
+    base: $font-size-base // 16px
+);
+
+// border-radius
+$border-radius: (base: $border-radius-base,
+    l: $border-radius-l);
+
+// font-weight
+$font-weights: (normal: 400,
+    medium: 500,
+    bold: 700);
+
+// text-align
+$text-aligns: (center: center,
+    left: left,
+    right: right);
+
+// direction
+$directions: (t: top,
+    r: right,
+    b: bottom,
+    l: left);
+
+// flex
+$flex-properties: (start: flex-start,
+    end: flex-end,
+    center: center,
+    around: space-around,
+    between: space-between,
+    baseline: baseline);
+
+$flex-directions: (row: row,
+    column: column,
+    row-reverse: row-reverse,
+    column-reverse: column-reverse);
+
+// display
+$display: (flex: flex,
+    block: block,
+    inline: inline,
+    inline-block: inline-block,
+    none: none);
+
+// width
+$width: (100: 100%);
+
+// height
+$height: (100: 100%);
+
+// box-shadow
+$shadow: (shadow:0px 3px 6px #00000029);

@@ -1,0 +1,14 @@
+/* RWD 斷點 */
+// pad
+@mixin md {
+    @media (min-width: 767px) {
+        @content;
+    }
+}
+
+// desktop
+@mixin lg {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}

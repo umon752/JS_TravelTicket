@@ -1,0 +1,120 @@
+$spacer: 4px;
+$spacer-1: $spacer; //4px
+$spacer-2: $spacer * 1.5; //6px
+$spacer-3: $spacer * 2; //8px
+$spacer-4: $spacer * 2.5; //10px
+$spacer-5: $spacer * 3; //12px
+$spacer-6: $spacer * 3.5; //14px
+$spacer-7: $spacer * 4; //16px
+$spacer-8: $spacer * 5; //20px
+$spacer-9: $spacer * 5.5; //22px
+$spacer-10: $spacer * 6; //24px
+$spacer-11: $spacer * 8; //32px
+$spacer-12: $spacer * 10; //40px
+$spacer-13: $spacer * 14; //56px
+$spacer-14: $spacer * 15; //60px
+$spacer-15: $spacer * 25; //100px
+$spacer-16: $spacer * 30; //120px
+
+
+// .m-0 ~ 15、.p-0 ~ 16
+@mixin spacers($breakpoint: null) {
+
+    @each $key,
+    $value in $directions {
+        @for $i from 0 through 16 {
+            @if ($i==0) {
+                .m#{$key}#{$breakpoint}-#{$i} {
+                    margin-#{$value}: 0;
+                }
+
+                .p#{$key}#{$breakpoint}-#{$i} {
+                    padding-#{$value}: 0;
+                }
+            }
+
+            @else {
+                .m#{$key}#{$breakpoint}-#{$i} {
+                    margin-#{$value}: $spacer * $i;
+                }
+
+                .p#{$key}#{$breakpoint}-#{$i} {
+                    padding-#{$value}: $spacer * $i;
+                }
+            }
+        }
+    }
+}
+
+// mx-0 ~ 16
+@mixin spacersX($breakpoint: null) {
+    @for $i from 0 through 16 {
+        @if ($i==0) {
+            .mx#{$breakpoint}-#{$i} {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .px#{$breakpoint}-#{$i} {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        @else {
+            .mx#{$breakpoint}-#{$i} {
+                margin-left: $spacer * $i;
+                margin-right: $spacer * $i;
+            }
+
+            .px#{$breakpoint}-#{$i} {
+                padding-left: $spacer * $i;
+                padding-right: $spacer * $i;
+            }
+        }
+    }
+}
+
+// my-0 ~ 16
+@mixin spacersY($breakpoint: null) {
+    @for $i from 0 through 16 {
+        @if ($i==0) {
+            .my#{$breakpoint}-#{$i} {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .py#{$breakpoint}-#{$i} {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        @else {
+            .my#{$breakpoint}-#{$i} {
+                margin-top: $spacer * $i;
+                margin-bottom: $spacer * $i;
+            }
+
+            .py#{$breakpoint}-#{$i} {
+                padding-top: $spacer * $i;
+                padding-bottom: $spacer * $i;
+            }
+        }
+    }
+}
+
+
+
+// (RWD)
+// phone
+@include spacers();
+@include spacersX();
+@include spacersY;
+
+// pad
+@include md {
+    @include spacers(-md);
+    @include spacersX(-md);
+    @include spacersY(-md);
+}

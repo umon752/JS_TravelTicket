@@ -49,6 +49,7 @@ const card = document.querySelector(".js-cardList");
 const selectArea = document.querySelector(".js-searchArea");
 const searchCount = document.querySelector(".js-searchCount");
 const addTicket = document.querySelector(".js-addTicket");
+// const from = document.querySelector(".js-from");
 
 
 
@@ -197,8 +198,6 @@ function addTicketData(e) {
         alert("套票名稱不可空白");
     } else if (ticketImg.value == '') {
         alert("圖片網址不可空白");
-    } else if (ticketArea.value == '') {
-        alert("景點地區不可空白");
     } else if (ticketPriceValue == '') {
         alert("套票金額不可空白");
     } else if (!reg.test(ticketPriceValue)) {
@@ -228,12 +227,13 @@ function addTicketData(e) {
         })
         // 下選單設定顯示全部地區
         selectArea.value = "全部地區";
+        // from.reset();
         // 刷新畫面
         init();
         // 清空 input 欄位
         ticketName.value = "";
         ticketImg.value = "";
-        ticketArea.value = "";
+        ticketArea.value = "請選擇景點地區";
         ticketDescription.value = "";
         ticketGroup.value = "";
         ticketPrice.value = "";

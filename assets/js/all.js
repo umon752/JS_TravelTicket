@@ -198,6 +198,8 @@ function addTicketData(e) {
         alert("套票名稱不可空白");
     } else if (ticketImg.value == '') {
         alert("圖片網址不可空白");
+    } else if (ticketArea.value == '請選擇景點地區') {
+        alert("請選擇景點地區");
     } else if (ticketPriceValue == '') {
         alert("套票金額不可空白");
     } else if (!reg.test(ticketPriceValue)) {

@@ -7,39 +7,7 @@ AOS.init({
 /**
  * Data
  */
-let data = [{
-        "id": 0,
-        "name": "肥宅心碎賞櫻3日",
-        "imgUrl": "https://images.unsplash.com/photo-1522383225653-ed111181a951?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80",
-        "area": "高雄",
-        "description": "賞櫻花最佳去處。肥宅不得不去的超讚景點！",
-        "group": 87,
-        "price": 1400,
-        "rate": 10
-    },
-    {
-        "id": 1,
-        "name": "貓空纜車雙程票",
-        "imgUrl": "https://images.unsplash.com/photo-1501393152198-34b240415948?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
-        "area": "台北",
-        "description": "乘坐以透明強化玻璃為地板的「貓纜之眼」水晶車廂，享受騰雲駕霧遨遊天際之感",
-        "group": 99,
-        "price": 240,
-        "rate": 2
-    },
-    {
-        "id": 2,
-        "name": "台中谷關溫泉會1日",
-        "imgUrl": "https://images.unsplash.com/photo-1535530992830-e25d07cfa780?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
-        "area": "台中",
-        "description": "全館客房均提供谷關無色無味之優質碳酸原湯，並取用八仙山之山冷泉供蒞臨貴賓沐浴及飲水使用。",
-        "group": 20,
-        "price": 1765,
-        "rate": 7
-    }
-];
-
-
+let data = [];
 
 /**
  * DOM
@@ -62,21 +30,35 @@ const verify = document.querySelectorAll(".js-verify");
 
 
 
+
+
 /**
  * init
  */
 // 初始化 繪製 card
 function init() {
-    let str = "";
-    data.forEach(function (item, index) {
-        str += render(item, index);
-    })
-    card.innerHTML = str;
+    axios.get('https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json')
+        .then(function (response) {
+            data = response.data.data;
+            render(data);
+        });
 };
 init();
 
-// 渲染
-function render(item, index) {
+
+// card 渲染畫面
+function render(data) {
+    let str = "";
+    data.forEach(function (item, index) {
+        str += renderStr(item, index);
+    })
+    card.innerHTML = str;
+}
+
+
+
+// HTML 結構
+function renderStr(item, index) {
     let aosDelay = 0;
     return `<div class="col col-md-6 col-lg-4 position-relative mb-12" data-aos="fade-up" data-aos-delay="${aosDelay+index*100}">
         <div class="tag bg-primary-light font-size-m text-white py-3 px-8">${item.area}</div>
@@ -121,10 +103,10 @@ function selectFilter(e) {
     let count = 0;
     data.forEach(function (item, index) {
         if (e.target.value === item.area) {
-            str += render(item, index);
+            str += renderStr(item, index);
             count++;
         } else if (e.target.value === "全部地區") {
-            str += render(item, index);
+            str += renderStr(item, index);
             count++;
         }
     })
@@ -139,6 +121,18 @@ function addTicketData(e) {
     let ticketPriceValue = parseInt(ticketPrice.value);
     let ticketGroupValue = parseInt(ticketGroup.value);
     let ticketTagValue = parseInt(ticketTag.value);
+
+    // 建立新增資料的物件格式
+    let newData = {
+        id: data.length,
+        name: ticketName.value,
+        imgUrl: ticketImg.value,
+        area: ticketArea.value,
+        description: ticketDescription.value,
+        group: ticketGroupValue,
+        price: ticketPriceValue,
+        rate: ticketTagValue
+    }
 
 
     if (ticketName.value == '') {
@@ -169,24 +163,17 @@ function addTicketData(e) {
         ticketDescription.focus();
         verify[6].textContent = "字數不可超過 100 字";
     } else {
-        data.push({
-            id: data.length,
-            name: ticketName.value,
-            imgUrl: ticketImg.value,
-            area: ticketArea.value,
-            description: ticketDescription.value,
-            group: ticketGroupValue,
-            price: ticketPriceValue,
-            rate: ticketTagValue
-        })
+        // 新增表單填寫資料
+        data.push(newData);
         // 下選單設定顯示全部地區
         selectArea.value = "全部地區";
         // 清空 input 欄位
         form.reset();
-        // 刷新畫面
-        init();
+        // 刷新 card 渲染畫面
+        render(data);
     }
 }
+
 
 // 清除驗證文字
 function inputValue(e) {

@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/css/vendor/c3.min.css">
     <link rel="stylesheet" href="./assets/style/css/all.css">
 </head>
 
@@ -136,7 +137,7 @@
         <div class="container">
             <!-- search -->
             <div class="row mb-13" data-aos="fade-up">
-                <div class="col col-md-10">
+                <div class="col col-md-12">
                     <div class="d-flex flex-column flex-md-row align-items-center">
                         <div class="col col-md-3 w-100">
                             <select
@@ -148,8 +149,10 @@
                                 <option value="高雄">高雄</option>
                             </select>
                         </div>
-                        <div class="col col-md-7">
+                        <div class="col col-md-6 mb-4">
                             <p class="js-searchCount text-secondary"></p>
+                        </div>
+                        <div class="js-chart col col-md-3">
                         </div>
                     </div>
                 </div>
@@ -159,8 +162,11 @@
             </div>
         </div>
     </section>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="./assets/js/d3-5.8.2.min.js"></script>
+    <script src="./assets/js/c3.min.js"></script>
     <script src="./assets/js/all.js"></script>
 </body>
 

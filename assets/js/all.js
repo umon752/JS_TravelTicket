@@ -30,8 +30,6 @@ const verify = document.querySelectorAll(".js-verify");
 
 
 
-
-
 /**
  * init
  */
@@ -40,22 +38,43 @@ function init() {
     axios.get('https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json')
         .then(function (response) {
             data = response.data.data;
-            render(data);
+            filterLocation();
+            handleLocation();
+            render();
         });
 };
 init();
 
 
 // card 渲染畫面
-function render(data) {
+function render() {
+
     let str = "";
     data.forEach(function (item, index) {
         str += renderStr(item, index);
     })
     card.innerHTML = str;
+
+
+
+    /* C3 */
+    const chart = c3.generate({
+        bindto: ".js-chart",
+        data: {
+            columns: locationData,
+            type: 'donut',
+            colors: {
+                "高雄": "#E68618",
+                "台中": "#5151D3",
+                "台北": "#26C0C7"
+            }
+        },
+        donut: {
+            title: "套票地區比重"
+        }
+    });
+
 }
-
-
 
 // HTML 結構
 function renderStr(item, index) {
@@ -91,6 +110,37 @@ function renderStr(item, index) {
         </div>
         </div>`
 }
+
+
+
+/* C3 */
+// 篩選地區為物件
+let locationObj = {};
+
+function filterLocation() {
+    data.forEach(function (item) {
+        if (locationObj[item.area] == undefined) {
+            locationObj[item.area] = 1;
+        } else {
+            locationObj[item.area] += 1;
+        }
+    })
+}
+console.log(locationObj);
+
+// 處理 locationObj 為 c3 要的陣列格式
+let locationData = [];
+
+function handleLocation() {
+    let area = Object.keys(locationObj);
+    area.forEach(function (item) {
+        let ary = [];
+        ary.push(item);
+        ary.push(locationObj[item]);
+        locationData.push(ary);
+    })
+}
+console.log(locationData);
 
 
 
@@ -169,8 +219,13 @@ function addTicketData(e) {
         selectArea.value = "全部地區";
         // 清空 input 欄位
         form.reset();
+        // 地區圓餅圖資料更新
+        locationObj[newData.area] += 1;
+        locationData = [];
+        handleLocation();
+        console.log(locationData);
         // 刷新 card 渲染畫面
-        render(data);
+        render();
     }
 }
 

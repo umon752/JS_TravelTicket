@@ -47,7 +47,7 @@ init();
 
 
 // card 渲染畫面
-function render() {
+function render(locationData) {
 
     let str = "";
     data.forEach(function (item, index) {
@@ -64,13 +64,21 @@ function render() {
             columns: locationData,
             type: 'donut',
             colors: {
-                "高雄": "#E68618",
-                "台中": "#5151D3",
-                "台北": "#26C0C7"
+                高雄: "#E68618",
+                台中: "#5151D3",
+                台北: "#26C0C7"
             }
         },
         donut: {
-            title: "套票地區比重"
+            title: "套票地區比重",
+            width: 15,
+            label: {
+                show: false
+            }
+        },
+        size: { // 大小
+            height: 200,
+            width: 200
         }
     });
 
@@ -126,12 +134,13 @@ function filterLocation() {
         }
     })
 }
-console.log(locationObj);
+// console.log(locationObj);
 
 // 處理 locationObj 為 c3 要的陣列格式
-let locationData = [];
+
 
 function handleLocation() {
+    let locationData = [];
     let area = Object.keys(locationObj);
     area.forEach(function (item) {
         let ary = [];
@@ -139,8 +148,9 @@ function handleLocation() {
         ary.push(locationObj[item]);
         locationData.push(ary);
     })
+    render(locationData);
 }
-console.log(locationData);
+// console.log(locationData);
 
 
 
@@ -221,11 +231,7 @@ function addTicketData(e) {
         form.reset();
         // 地區圓餅圖資料更新
         locationObj[newData.area] += 1;
-        locationData = [];
         handleLocation();
-        console.log(locationData);
-        // 刷新 card 渲染畫面
-        render();
     }
 }
 

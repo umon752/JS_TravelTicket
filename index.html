@@ -80,7 +80,7 @@
                                 <label for="ticketPrice" class="text-primary font-weight-bold">套票金額</label>
                             </div>
                             <div class="col col-md-9 border-primary border-bottom px-0">
-                                <input type="number" id="ticketPrice" placeholder="請填寫套票金額"
+                                <input type="number" id="ticketPrice" placeholder="請填寫套票金額" min="1"
                                     class="js-ticketPrice text-secondary bg-light rounded-base border-0 w-100 py-3 px-5">
                             </div>
                             <!-- 驗證文字 -->
@@ -92,7 +92,7 @@
                                 <label for="ticketGroup" class="text-primary font-weight-bold">套票組數</label>
                             </div>
                             <div class="col col-md-9 border-primary border-bottom px-0">
-                                <input type="number" id="ticketGroup" placeholder="請填寫套票組數"
+                                <input type="number" id="ticketGroup" placeholder="請填寫套票組數" min="1"
                                     class="js-ticketGroup text-secondary bg-light rounded-base border-0 w-100 py-3 px-5">
                             </div>
                             <!-- 驗證文字 -->
@@ -104,7 +104,7 @@
                                 <label for="ticketTag" class="text-primary font-weight-bold">套票星級</label>
                             </div>
                             <div class="col col-md-9 border-primary border-bottom px-0">
-                                <input type="number" id="ticketTag" placeholder="請填寫套票星級"
+                                <input type="number" id="ticketTag" placeholder="請填寫套票星級" min="1" max="10"
                                     class="js-ticketTag text-secondary bg-light rounded-base border-0 w-100 py-3 px-5">
                             </div>
                             <!-- 驗證文字 -->
@@ -117,6 +117,7 @@
                             </div>
                             <div class="col col-md-9 border-primary border-bottom px-0">
                                 <textarea name="套票描述" id="ticketDescription" placeholder="請填寫套票描述 (限 100 字)"
+                                    maxlength="100"
                                     class="js-ticketDescription text-secondary bg-light rounded-base border-0 w-100 py-3 px-5"></textarea>
                             </div>
                             <!-- 驗證文字 -->

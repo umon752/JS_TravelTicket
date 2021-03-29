@@ -207,21 +207,24 @@ function addTicketData(e) {
     } else if (isNaN(ticketPriceValue)) {
         ticketPrice.focus();
         verify[3].textContent = "套票金額不可空白";
+    } else if (ticketPriceValue <= 0) {
+        ticketPrice.focus();
+        verify[3].textContent = "套票金額輸入錯誤";
     } else if (isNaN(ticketGroupValue)) {
         ticketGroup.focus();
         verify[4].textContent = "套票組數不可空白";
+    } else if (ticketGroupValue <= 0) {
+        ticketGroup.focus();
+        verify[4].textContent = "套票組數輸入錯誤";
     } else if (isNaN(ticketTagValue)) {
         ticketTag.focus();
         verify[5].textContent = "套票星級不可空白";
-    } else if (ticketTagValue > 10) {
+    } else if (ticketTagValue > 10 || ticketTagValue <= 0) {
         ticketTag.focus();
         verify[5].textContent = "星級區間為 1-10 分";
     } else if (ticketDescription.value == '') {
         ticketDescription.focus();
         verify[6].textContent = "套票描述不可空白";
-    } else if (ticketDescription.value.length >= 100) {
-        ticketDescription.focus();
-        verify[6].textContent = "字數不可超過 100 字";
     } else {
         // 新增表單填寫資料
         data.push(newData);

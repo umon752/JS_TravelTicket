@@ -194,6 +194,7 @@ function addTicketData(e) {
         rate: ticketTagValue
     }
 
+    const imgUrlRule = RegExp(/http/);
 
     if (ticketName.value == '') {
         ticketName.focus();
@@ -201,6 +202,9 @@ function addTicketData(e) {
     } else if (ticketImg.value == '') {
         ticketImg.focus();
         verify[1].textContent = "圖片網址不可空白";
+    } else if (!ticketImg.value.match(imgUrlRule)) {
+        ticketImg.focus();
+        verify[1].textContent = "圖片網址格式錯誤";
     } else if (ticketArea.value == '請選擇景點地區') {
         ticketArea.focus();
         verify[2].textContent = "請選擇景點地區";

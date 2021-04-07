@@ -50,11 +50,13 @@ init();
 function render(locationData) {
 
     let str = "";
+    let count = 0;
     data.forEach(function (item, index) {
         str += renderStr(item, index);
+        count++;
     })
     card.innerHTML = str;
-
+    searchCount.innerHTML = `本次搜尋共 ${count} 筆資料`;
 
 
     /* C3 */
